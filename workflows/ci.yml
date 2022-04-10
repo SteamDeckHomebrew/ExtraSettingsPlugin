@@ -1,0 +1,24 @@
+name: "CI"
+
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v1
+
+    - run: ./bundle.sh
+
+    - name: Release Plugin
+      uses: marvinpinto/action-automatic-releases@latest
+      with:
+        title: extra-settings-plugin
+        automatic_release_tag: continuous
+        prerelease: true
+        draft: false
+        files: |
+          extra-settings-plugin.zip
+        repo_token: ${{ secrets.GITHUB_TOKEN }}
