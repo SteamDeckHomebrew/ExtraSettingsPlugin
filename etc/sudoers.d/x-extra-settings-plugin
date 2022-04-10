@@ -1,0 +1,4 @@
+# This file is required to allow the "deck" user to toggle the sshd service 
+deck ALL=NOPASSWD: /bin/systemctl start sshd.service
+deck ALL=NOPASSWD: /bin/systemctl stop sshd.service
+deck ALL=NOPASSWD: /bin/systemctl restart sshd.service

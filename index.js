@@ -19,10 +19,14 @@ function handleSSHToggle() {
   if (isActive) {
     call_plugin_method("set_ssh_state", { state: false }).then((value) => {
       setToggleState("sshToggle", value);
+    }).catch((err) => {
+      console.error(err)
     });
   } else {
     call_plugin_method("set_ssh_state", { state: true }).then((value) => {
       setToggleState("sshToggle", value);
+    }).catch((err) => {
+      console.error(err)
     });
   }
 }
