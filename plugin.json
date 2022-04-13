@@ -1,0 +1,11 @@
+{
+    "name": "Extra Settings",
+    "author": "WerWolv",
+    "main_view_html": "main_view.html",
+    "flags": [ "hot_reload", "root" ],
+    "publish": {
+        "discord_id": "181738643008782346",
+        "description": "Advanced settings to control the Steam Deck's system features",
+        "tags": [ "utility", "settings" ]
+    }
+}
