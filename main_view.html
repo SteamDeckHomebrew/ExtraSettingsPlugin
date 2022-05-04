@@ -36,11 +36,32 @@
                 }
             }
 
+            function handleTHPToggle() {
+                let toggle = document.getElementById("thpToggle");
+
+                let isActive = toggle.classList.contains("gamepaddialog_On_yLrDA");
+
+                if (isActive) {
+                    call_plugin_method("set_thp_state", { "state": false }).then((value) => {
+                        setToggleState("thpToggle", value);
+                    })
+                }
+                else {
+                    call_plugin_method("set_thp_state", { "state": true }).then((value) => {
+                        setToggleState("thpToggle", value);
+                    })
+                }
+            }
+
             async function handleInitialValue() {
                 console.log("InitialValue")
                 let state = await call_plugin_method("get_ssh_state", {});
                 console.log(state)
                 setToggleState("sshToggle", state)
+
+                state = await call_plugin_method("get_thp_state", {});
+                console.log("THP: " + state.toString())
+                setToggleState("thpToggle", state)
             }
 
         </script>
@@ -64,7 +85,25 @@
                             <div class="gamepaddialog_FieldChildren_2rhav">
                                 <div id="sshToggle" tabindex="0" class="gamepaddialog_Toggle_9Ql-o Focusable" onclick="handleSSHToggle()">
                                     <div class="gamepaddialog_ToggleRail_2bl0i"></div>
-                                <div class="gamepaddialog_ToggleSwitch_1PQpp"></div>
+                                    <div class="gamepaddialog_ToggleSwitch_1PQpp"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="quickaccesscontrols_PanelSectionRow_26R5w">
+                <div class="quickaccesscontrols_PanelSectionRow_26R5w">
+                    <div class="gamepaddialog_Field_eKmEX gamepaddialog_WithFirstRow_2bDqk gamepaddialog_WithBottomSeparator_3YKpU gamepaddialog_ExtraPaddingOnChildrenBelow_3nLNL gamepaddialog_StandardPadding_xIITX gamepaddialog_HighlightOnFocus_2HFrm Panel Focusable" style="--indent-level:0;">
+                        <div class="gamepaddialog_FieldLabelRow_2VcTl">
+                            <div class="gamepaddialog_FieldLabel_3jMlJ">
+                                Transparent Huge Pages
+                            </div>
+                            <div class="gamepaddialog_FieldChildren_2rhav">
+                                <div id="thpToggle" tabindex="0" class="gamepaddialog_Toggle_9Ql-o Focusable" onclick="handleTHPToggle()">
+                                    <div class="gamepaddialog_ToggleRail_2bl0i"></div>
+                                    <div class="gamepaddialog_ToggleSwitch_1PQpp"></div>
+                                </div>
                             </div>
                         </div>
                     </div>
