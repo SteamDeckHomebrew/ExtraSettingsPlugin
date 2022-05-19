@@ -7,7 +7,7 @@
         <script>
 
             function setToggleState(id, state) {
-                const ENABLED_CLASS = "gamepaddialog_On_yLrDA";
+                const ENABLED_CLASS = "gamepaddialog_On_3ld7T";
                 let toggle = document.getElementById(id);
 
                 if (state && !toggle.classList.contains(ENABLED_CLASS)) {
@@ -22,7 +22,7 @@
             function handleSSHToggle() {
                 let toggle = document.getElementById("sshToggle");
 
-                let isActive = toggle.classList.contains("gamepaddialog_On_yLrDA");
+                let isActive = toggle.classList.contains("gamepaddialog_On_3ld7T");
 
                 if (isActive) {
                     call_plugin_method("set_ssh_state", { "state": false }).then((value) => {
@@ -36,23 +36,44 @@
                 }
             }
 
+            function handleTHPToggle() {
+                let toggle = document.getElementById("thpToggle");
+
+                let isActive = toggle.classList.contains("gamepaddialog_On_3ld7T");
+
+                if (isActive) {
+                    call_plugin_method("set_thp_state", { "state": false }).then((value) => {
+                        setToggleState("thpToggle", value);
+                    })
+                }
+                else {
+                    call_plugin_method("set_thp_state", { "state": true }).then((value) => {
+                        setToggleState("thpToggle", value);
+                    })
+                }
+            }
+
             async function handleInitialValue() {
                 console.log("InitialValue")
                 let state = await call_plugin_method("get_ssh_state", {});
                 console.log(state)
                 setToggleState("sshToggle", state)
+
+                state = await call_plugin_method("get_thp_state", {});
+                console.log("THP: " + state.toString())
+                setToggleState("thpToggle", state)
             }
 
         </script>
     </head>
     <body onload="handleInitialValue()">
         <div class="quickaccessmenu_TabGroupPanel_1QO7b Panel Focusable">
-            <div class="quickaccesscontrols_PanelSectionRow_26R5w">
-                <div class="quickaccesscontrols_PanelSectionRow_26R5w">
-                    <div class="gamepaddialog_Field_eKmEX gamepaddialog_WithFirstRow_2bDqk gamepaddialog_WithBottomSeparator_3YKpU gamepaddialog_ExtraPaddingOnChildrenBelow_3nLNL gamepaddialog_StandardPadding_xIITX gamepaddialog_HighlightOnFocus_2HFrm Panel Focusable" style="--indent-level:0;">
-                        <div class="gamepaddialog_FieldLabelRow_2VcTl">
-                            <div class="gamepaddialog_FieldLabel_3jMlJ">
-                                <div class="gamepaddialog_FieldLeadIcon_3CGpa">
+            <div class="quickaccesscontrols_PanelSection_2C0g0">
+                <div class="quickaccesscontrols_PanelSectionRow_2VQ88">
+                    <div class="gamepaddialog_Field_S-_La gamepaddialog_WithFirstRow_qFXi6 gamepaddialog_WithBottomSeparator_1lUZx gamepaddialog_ExtraPaddingOnChildrenBelow_5UO-_ gamepaddialog_StandardPadding_XRBFu gamepaddialog_HighlightOnFocus_wE4V6 Panel Focusable" style="--indent-level:0;">
+                        <div class="gamepaddialog_FieldLabelRow_H9WOq">
+                            <div class="gamepaddialog_FieldLabel_3b0U-">
+                                <div class="gamepaddialog_FieldLeadIcon_OKYIj">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-server" viewBox="0 0 16 16">
                                     <path d="M1.333 2.667C1.333 1.194 4.318 0 8 0s6.667 1.194 6.667 2.667V4c0 1.473-2.985 2.667-6.667 2.667S1.333 5.473 1.333 4V2.667z"/>
                                     <path d="M1.333 6.334v3C1.333 10.805 4.318 12 8 12s6.667-1.194 6.667-2.667V6.334a6.51 6.51 0 0 1-1.458.79C11.81 7.684 9.967 8 8 8c-1.966 0-3.809-.317-5.208-.876a6.508 6.508 0 0 1-1.458-.79z"/>
@@ -61,10 +82,26 @@
                                 </div>
                                 SSH Server
                             </div>
-                            <div class="gamepaddialog_FieldChildren_2rhav">
-                                <div id="sshToggle" tabindex="0" class="gamepaddialog_Toggle_9Ql-o Focusable" onclick="handleSSHToggle()">
-                                    <div class="gamepaddialog_ToggleRail_2bl0i"></div>
-                                <div class="gamepaddialog_ToggleSwitch_1PQpp"></div>
+                            <div class="gamepaddialog_FieldChildren_14_HB">
+                                <div id="sshToggle" tabindex="0" class="gamepaddialog_Toggle_24G4g Focusable" onclick="handleSSHToggle()">
+                                    <div class="gamepaddialog_ToggleRail_2JtC3"></div>
+                                    <div class="gamepaddialog_ToggleSwitch_3__OD"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="quickaccesscontrols_PanelSectionRow_2VQ88">
+                    <div class="gamepaddialog_Field_S-_La gamepaddialog_WithFirstRow_qFXi6 gamepaddialog_WithBottomSeparator_1lUZx gamepaddialog_ExtraPaddingOnChildrenBelow_5UO-_ gamepaddialog_StandardPadding_XRBFu gamepaddialog_HighlightOnFocus_wE4V6 Panel Focusable" style="--indent-level:0;">
+                        <div class="gamepaddialog_FieldLabelRow_H9WOq">
+                            <div class="gamepaddialog_FieldLabel_3b0U-">
+                                Transparent Huge Pages
+                            </div>
+                            <div class="gamepaddialog_FieldChildren_14_HB">
+                                <div id="thpToggle" tabindex="0" class="gamepaddialog_Toggle_24G4g Focusable" onclick="handleTHPToggle()">
+                                    <div class="gamepaddialog_ToggleRail_2JtC3"></div>
+                                    <div class="gamepaddialog_ToggleSwitch_3__OD"></div>
+                                </div>
                             </div>
                         </div>
                     </div>
